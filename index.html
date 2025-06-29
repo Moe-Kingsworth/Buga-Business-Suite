@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buga Business Suite - All-In-One BUsiness Management Tools</title>
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="description" content="Next-generation cybersecurity solutions that protect and empower your business. Real-time threat intelligence, proactive defense, and trusted partnership." />
+</head>
+<body class="bg-background text-text-primary">
+    <!-- Navigation Header -->
+    <nav class="bg-white shadow-subtle sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <svg class="h-8 w-8 text-accent" viewBox="0 0 32 32" fill="currentColor">
+                            <path d="M16 2L3 7v8c0 8.5 5.5 16.5 13 18 7.5-1.5 13-9.5 13-18V7L16 2z"/>
+                            <path d="M12 16l3 3 7-7" stroke="white" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <h1 class="text-xl font-bold text-primary">CyberShield Pro</h1>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="homepage.html" class="text-primary font-semibold border-b-2 border-accent px-3 py-2">Home</a>
+                        <div class="relative group">
+                            <button class="text-text-secondary hover:text-primary px-3 py-2 transition-colors duration-300">Solutions</button>
+                            <div class="absolute left-0 mt-2 w-64 bg-white rounded-lg shadow-card opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                                <div class="p-4">
+                                    <a href="#" class="block px-4 py-2 text-sm text-text-secondary hover:text-primary hover:bg-surface rounded">Threat Detection</a>
+                                    <a href="#" class="block px-4 py-2 text-sm text-text-secondary hover:text-primary hover:bg-surface rounded">Incident Response</a>
+                                    <a href="#" class="block px-4 py-2 text-sm text-text-secondary hover:text-primary hover:bg-surface rounded">Compliance Management</a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="text-text-secondary hover:text-primary px-3 py-2 transition-colors duration-300">Threat Intelligence</a>
+                        <a href="#" class="text-text-secondary hover:text-primary px-3 py-2 transition-colors duration-300">About</a>
+                        <a href="#" class="text-text-secondary hover:text-primary px-3 py-2 transition-colors duration-300">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Emergency Response Button -->
+                <div class="hidden md:block">
+                    <button class="bg-error text-white px-4 py-2 rounded-lg font-semibold hover:bg-error-600 transition-colors duration-300">
+                        Emergency Response
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button class="text-text-secondary hover:text-primary">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Threat Map -->
+    <section class="relative bg-gradient-to-br from-primary via-secondary to-primary-800 text-white overflow-hidden">
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="space-y-8">
+                    <div class="space-y-4">
+                        <h1 class="text-5xl lg:text-6xl font-bold leading-tight">
+                            Solutions that Drives Growth
+                        </h1>
+                        <p class="text-xl text-primary-100 max-w-lg">
+                            Next-generation Business Managment Solutions that protect your business while empowering growth. Real-time Analytics meets proactive decision making.
+                        </p>
+                    </div>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-accent text-primary font-semibold px-8 py-4 rounded-lg hover:bg-accent-500 transition-all duration-300 transform hover:scale-105">
+                            Get Security Assessment
+                        </button>
+                        <button class="border-2 border-accent text-accent font-semibold px-8 py-4 rounded-lg hover:bg-accent hover:text-primary transition-all duration-300">
+                            View Live Demo
+                        </button>
+                    </div>
+
+                    <!-- Real-time Statistics -->
+                    <div class="grid grid-cols-3 gap-6 pt-8">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-accent">2.4M+</div>
+                            <div class="text-sm text-primary-200">Threats Blocked Today</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-accent">15K+</div>
+                            <div class="text-sm text-primary-200">Organizations Protected</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-accent">30s</div>
+                            <div class="text-sm text-primary-200">Average Response Time</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Threat Map Visualization -->
+                <div class="relative">
+                    <div class="bg-primary-700 rounded-2xl p-6 shadow-card">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold">Global Threat Map</h3>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-2 h-2 bg-success rounded-full animate-pulse"></div>
+                                <span class="text-sm text-primary-200">Live</span>
+                            </div>
+                        </div>
+                        
+                        <!-- World Map Placeholder -->
+                        <div class="relative h-64 bg-primary-800 rounded-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Global threat visualization map" class="w-full h-full object-cover opacity-60" />
+                            
+                            <!-- Threat Indicators -->
+                            <div class="absolute top-1/4 left-1/3 w-3 h-3 bg-warning rounded-full animate-pulse"></div>
+                            <div class="absolute top-1/2 right-1/4 w-2 h-2 bg-error rounded-full animate-pulse"></div>
+                            <div class="absolute bottom-1/3 left-1/2 w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+                        </div>
+
+                        <!-- Active Incidents -->
+                        <div class="mt-4 space-y-2">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-primary-200">Active Incidents</span>
+                                <span class="text-warning font-semibold">23</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-primary-200">Blocked Attacks</span>
+                                <span class="text-success font-semibold">1,847</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition Grid -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-primary mb-4">Why Choose CyberShield Pro</h2>
+                <p class="text-xl text-text-secondary max-w-3xl mx-auto">
+                    Our comprehensive approach to cybersecurity combines cutting-edge technology with human expertise to deliver unparalleled protection.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Proactive Defense -->
+                <div class="group bg-surface rounded-2xl p-8 hover:bg-white hover:shadow-card transition-all duration-400 cursor-pointer">
+                    <div class="w-16 h-16 bg-accent-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                        <svg class="w-8 h-8 text-accent group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L3 7v8c0 8.5 5.5 16.5 13 18 7.5-1.5 13-9.5 13-18V7L12 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary mb-4">Proactive Defense</h3>
+                    <p class="text-text-secondary mb-6">
+                        Advanced AI-powered threat detection identifies and neutralizes risks before they impact your business operations.
+                    </p>
+                    <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <ul class="space-y-2 text-sm text-text-secondary">
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                24/7 Threat Monitoring
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Predictive Analytics
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Automated Response
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Business Enablement -->
+                <div class="group bg-surface rounded-2xl p-8 hover:bg-white hover:shadow-card transition-all duration-400 cursor-pointer">
+                    <div class="w-16 h-16 bg-success-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-success group-hover:text-white transition-all duration-300">
+                        <svg class="w-8 h-8 text-success group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary mb-4">Business Enablement</h3>
+                    <p class="text-text-secondary mb-6">
+                        Security solutions designed to accelerate innovation while maintaining the highest protection standards.
+                    </p>
+                    <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <ul class="space-y-2 text-sm text-text-secondary">
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Zero-Trust Architecture
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Cloud-Native Security
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                DevSecOps Integration
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Trusted Partnership -->
+                <div class="group bg-surface rounded-2xl p-8 hover:bg-white hover:shadow-card transition-all duration-400 cursor-pointer">
+                    <div class="w-16 h-16 bg-secondary-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-secondary group-hover:text-white transition-all duration-300">
+                        <svg class="w-8 h-8 text-secondary group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary mb-4">Trusted Partnership</h3>
+                    <p class="text-text-secondary mb-6">
+                        Expert guidance and support from cybersecurity professionals who understand your business challenges.
+                    </p>
+                    <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <ul class="space-y-2 text-sm text-text-secondary">
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Dedicated Security Experts
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Strategic Consulting
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                24/7 Support
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Solutions Finder -->
+    <section class="py-20 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-primary mb-4">Find Your Perfect Security Solution</h2>
+                <p class="text-xl text-text-secondary">Answer a few questions to get personalized recommendations</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-card p-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Industry Selection -->
+                        <div>
+                            <label class="block text-lg font-semibold text-primary mb-4">What's your industry?</label>
+                            <div class="space-y-3">
+                                <label class="flex items-center p-4 border border-border-light rounded-lg hover:border-accent cursor-pointer transition-colors duration-300">
+                                    <input type="radio" name="industry" value="healthcare" class="text-accent focus:ring-accent" />
+                                    <span class="ml-3 text-text-primary">Healthcare</span>
+                                </label>
+                                <label class="flex items-center p-4 border border-border-light rounded-lg hover:border-accent cursor-pointer transition-colors duration-300">
+                                    <input type="radio" name="industry" value="finance" class="text-accent focus:ring-accent" />
+                                    <span class="ml-3 text-text-primary">Financial Services</span>
+                                </label>
+                                <label class="flex items-center p-4 border border-border-light rounded-lg hover:border-accent cursor-pointer transition-colors duration-300">
+                                    <input type="radio" name="industry" value="manufacturing" class="text-accent focus:ring-accent" />
+                                    <span class="ml-3 text-text-primary">Manufacturing</span>
+                                </label>
+                                <label class="flex items-center p-4 border border-border-light rounded-lg hover:border-accent cursor-pointer transition-colors duration-300">
+                                    <input type="radio" name="industry" value="technology" class="text-accent focus:ring-accent" />
+                                    <span class="ml-3 text-text-primary">Technology</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Company Size -->
+                        <div>
+                            <label class="block text-lg font-semibold text-primary mb-4">Company size?</label>
+                            <div class="space-y-3">
+                                <label class="flex items-center p-4 border border-border-light rounded-lg hover:border-accent cursor-pointer transition-colors duration-300">
+                                    <input type="radio" name="size" value="small" class="text-accent focus:ring-accent" />
+                                    <span class="ml-3 text-text-primary">1-50 employees</span>
+                                </label>
+                                <label class="flex items-center p-4 border border-border-light rounded-lg hover:border-accent cursor-pointer transition-colors duration-300">
+                                    <input type="radio" name="size" value="medium" class="text-accent focus:ring-accent" />
+                                    <span class="ml-3 text-text-primary">51-500 employees</span>
+                                </label>
+                                <label class="flex items-center p-4 border border-border-light rounded-lg hover:border-accent cursor-pointer transition-colors duration-300">
+                                    <input type="radio" name="size" value="large" class="text-accent focus:ring-accent" />
+                                    <span class="ml-3 text-text-primary">500+ employees</span>
+                                </label>
+                                <label class="flex items-center p-4 border border-border-light rounded-lg hover:border-accent cursor-pointer transition-colors duration-300">
+                                    <input type="radio" name="size" value="enterprise" class="text-accent focus:ring-accent" />
+                                    <span class="ml-3 text-text-primary">Enterprise (5000+)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <button class="bg-accent text-primary font-semibold px-8 py-4 rounded-lg hover:bg-accent-500 transition-all duration-300 transform hover:scale-105">
+                            Get My Recommendations
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-primary mb-4">Trusted by Industry Leaders</h2>
+                <p class="text-xl text-text-secondary">Join thousands of organizations that trust CyberShield Pro</p>
+            </div>
+
+            <!-- Client Logos -->
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center mb-16">
+                <div class="flex items-center justify-center h-16">
+                    <img src="https://www.codewithfaraz.com/assets/logo/header-logo.png" alt="Enterprise client logo" class="h-12 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300" />
+                </div>
+                <div class="flex items-center justify-center h-16">
+                    <img src="https://cdn.worldvectorlogo.com/logos/aws-2.svg" alt="Technology company logo" class="h-12 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300" />
+                </div>
+                <div class="flex items-center justify-center h-16">
+                    <img src="https://cdn.worldvectorlogo.com/logos/microsoft-6.svg" alt="Financial services logo" class="h-12 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300" />
+                </div>
+                <div class="flex items-center justify-center h-16">
+                    <img src="https://cdn.worldvectorlogo.com/logos/google-1-1.svg" alt="Healthcare organization logo" class="h-12 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300" />
+                </div>
+                <div class="flex items-center justify-center h-16">
+                    <img src="https://cdn.worldvectorlogo.com/logos/netflix-3.svg" alt="Manufacturing company logo" class="h-12 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300" />
+                </div>
+                <div class="flex items-center justify-center h-16">
+                    <img src="https://cdn.worldvectorlogo.com/logos/ibm.svg" alt="Government agency logo" class="h-12 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300" />
+                </div>
+            </div>
+
+            <!-- Testimonial Carousel -->
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-surface rounded-2xl p-8">
+                    <div class="text-center">
+                        <div class="w-20 h-20 mx-auto mb-6 rounded-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3" alt="CEO testimonial" class="w-full h-full object-cover" />
+                        </div>
+                        <blockquote class="text-2xl text-text-primary mb-6 italic">
+                            "CyberShield Pro transformed our security posture from reactive to proactive. We've seen a 95% reduction in security incidents and our team can now focus on innovation instead of firefighting."
+                        </blockquote>
+                        <div class="text-primary font-semibold">Sarah Chen</div>
+                        <div class="text-text-secondary">CEO, TechForward Solutions</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Threat Intelligence Preview -->
+    <section class="py-20 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Content -->
+                <div class="space-y-8">
+                    <div>
+                        <h2 class="text-4xl font-bold mb-4">Stay Ahead of Emerging Threats</h2>
+                        <p class="text-xl text-primary-100">
+                            Access real-time threat intelligence and security insights from our global network of security experts and AI-powered analysis.
+                        </p>
+                    </div>
+
+                    <!-- Recent Insights -->
+                    <div class="space-y-4">
+                        <div class="bg-primary-700 rounded-lg p-4 border-l-4 border-warning">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <h4 class="font-semibold text-warning mb-1">Critical Alert</h4>
+                                    <p class="text-sm text-primary-100">New ransomware variant targeting healthcare systems detected</p>
+                                </div>
+                                <span class="text-xs text-primary-200">2h ago</span>
+                            </div>
+                        </div>
+                        <div class="bg-primary-700 rounded-lg p-4 border-l-4 border-accent">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <h4 class="font-semibold text-accent mb-1">Threat Update</h4>
+                                    <p class="text-sm text-primary-100">Supply chain attack patterns evolving in manufacturing sector</p>
+                                </div>
+                                <span class="text-xs text-primary-200">4h ago</span>
+                            </div>
+                        </div>
+                        <div class="bg-primary-700 rounded-lg p-4 border-l-4 border-success">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <h4 class="font-semibold text-success mb-1">Security Patch</h4>
+                                    <p class="text-sm text-primary-100">Zero-day vulnerability patched in popular enterprise software</p>
+                                </div>
+                                <span class="text-xs text-primary-200">6h ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="bg-accent text-primary font-semibold px-8 py-4 rounded-lg hover:bg-accent-500 transition-all duration-300">
+                        Access Full Intelligence Hub
+                    </button>
+                </div>
+
+                <!-- Threat Analytics Dashboard -->
+                <div class="bg-primary-700 rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-semibold">Threat Analytics</h3>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-2 h-2 bg-success rounded-full animate-pulse"></div>
+                            <span class="text-sm text-primary-200">Real-time</span>
+                        </div>
+                    </div>
+
+                    <!-- Chart Placeholder -->
+                    <div class="h-48 bg-primary-800 rounded-lg mb-6 flex items-center justify-center">
+                        <svg class="w-full h-full p-4" viewBox="0 0 400 200">
+                            <polyline points="20,180 60,120 100,140 140,80 180,100 220,60 260,80 300,40 340,60 380,20" stroke="#00D4FF" stroke-width="3" fill="none"/>
+                            <circle cx="380" cy="20" r="4" fill="#00D4FF"/>
+                        </svg>
+                    </div>
+
+                    <!-- Metrics -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-accent">847</div>
+                            <div class="text-sm text-primary-200">Threats Detected</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-success">99.7%</div>
+                            <div class="text-sm text-primary-200">Detection Rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-accent to-accent-600 text-primary">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold mb-4 text-primary">Ready to Secure Your Future?</h2>
+            <p class="text-xl mb-8 opacity-90">
+                Join thousands of organizations that trust CyberShield Pro to protect their digital assets and enable innovation.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-primary text-white font-semibold px-8 py-4 rounded-lg hover:bg-primary-800 transition-all duration-300 transform hover:scale-105">
+                    Start Free Security Assessment
+                </button>
+                <button class="border-2 border-primary text-primary font-semibold px-8 py-4 rounded-lg hover:bg-primary hover:text-white transition-all duration-300">
+                    Schedule Expert Consultation
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <svg class="h-8 w-8 text-accent mr-3" viewBox="0 0 32 32" fill="currentColor">
+                            <path d="M16 2L3 7v8c0 8.5 5.5 16.5 13 18 7.5-1.5 13-9.5 13-18V7L16 2z"/>
+                            <path d="M12 16l3 3 7-7" stroke="white" stroke-width="2" fill="none"/>
+                        </svg>
+                        <h3 class="text-xl font-bold">CyberShield Pro</h3>
+                    </div>
+                    <p class="text-primary-200">
+                        Next-generation cybersecurity solutions that protect and empower your business.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-primary-200 hover:text-accent transition-colors duration-300">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-primary-200 hover:text-accent transition-colors duration-300">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Solutions -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Solutions</h4>
+                    <ul class="space-y-2 text-primary-200">
+                        <li><a href="#" class="hover:text-accent transition-colors duration-300">Threat Detection</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors duration-300">Incident Response</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors duration-300">Compliance Management</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors duration-300">Security Training</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-primary-200">
+                        <li><a href="#" class="hover:text-accent transition-colors duration-300">Threat Intelligence</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors duration-300">Case Studies</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors duration-300">Whitepapers</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors duration-300">Security Blog</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-primary-200">
+                        <li>
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                                </svg>
+                                contact@cybershieldpro.com
+                            </div>
+                        </li>
+                        <li>
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                                </svg>
+                                +1 (555) 123-4567
+                            </div>
+                        </li>
+                        <li class="text-error font-semibold">
+                            Emergency: +1 (555) 911-CYBER
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-primary-700 mt-12 pt-8 text-center text-primary-200">
+                <p>© 2025 CyberShield Pro. All Rights Reserved.</p><br>
+                    Made with <span style="color: red;">❤</span> by <a href="https://www.codewithfaraz.com" target="_blank"
+                        style="text-decoration: none; color: #2563EB;">codewithfaraz</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
