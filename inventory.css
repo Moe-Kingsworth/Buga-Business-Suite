@@ -1,0 +1,85 @@
+body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    /* Prevent horizontal scrollbar if modals cause overflow during transition */
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Sidebar transitions */
+#sidebar {
+    transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+#mainContent {
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.sidebar-nav-items::-webkit-scrollbar {
+    display: none;
+}
+
+.sidebar-nav-items {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Profile dropdown */
+#profileDropdown {
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+/* Icon styling */
+.menu-item-icon,
+.modal-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    stroke-width: 1.5;
+}
+
+.stat-card-icon-container {
+    padding: 0.75rem;
+    border-radius: 9999px;
+}
+
+.stat-card-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+.activity-icon-container {
+    padding: 0.5rem;
+    border-radius: 9999px;
+}
+
+.activity-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* Modal Styling */
+.modal-backdrop {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal-content {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
