@@ -30,7 +30,7 @@
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png" />
     <script src="script.js"></script>
 
-    <title>Buga</title>
+    <title>Buga - Your All-in-One Financial Management Partner</title>
   </head>
 
   <body>
@@ -1105,6 +1105,41 @@ particlesJS("particles-js", {
   },
   retina_detect: true
 });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+    const underline = document.getElementById("navUnderline");
+
+    function updateUnderline(link) {
+      const linkRect = link.getBoundingClientRect();
+      const parentRect = link.closest(".navbar-nav").getBoundingClientRect();
+      underline.style.width = `${link.offsetWidth}px`;
+      underline.style.left = `${link.offsetLeft}px`;
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener("click", function (e) {
+        // remove active from all
+        navLinks.forEach(l => l.classList.remove("active"));
+
+        // set active on clicked
+        this.classList.add("active");
+        updateUnderline(this);
+      });
+
+      // Initial load — if this link is active
+      if (link.classList.contains("active")) {
+        updateUnderline(link);
+      }
+    });
+
+    // Optional: recalculate on window resize
+    window.addEventListener("resize", () => {
+      const activeLink = document.querySelector(".navbar-nav .nav-link.active");
+      if (activeLink) updateUnderline(activeLink);
+    });
+  });
 </script>
 
 
