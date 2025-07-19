@@ -231,6 +231,20 @@ h6 span{
     transition: all 200ms linear;
 }
 
+/* Trigger animation if input has value (not empty) */
+.form-style:focus,
+.form-style:not(:placeholder-shown) {
+  background-color: #f0f0f0;
+}
+
+/* Animate icon when focused or filled */
+.form-style:focus ~ .input-icon,
+.form-style:not(:placeholder-shown) ~ .input-icon {
+  color: #002e6b;
+  transform: scale(1.2);
+}
+
+
 .btn{  
   border-radius: 4px;
   height: 44px;

@@ -1,67 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Login</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
-	<link rel="stylesheet" href="login.css" />
-	<link rel='stylesheet' href='https://unicons.iconscout.com/release/v2.1.9/css/unicons.css'>
-  </head>
-  <body>
-	<div class="section">
-		<div class="container">
-			<div class="row full-height justify-content-center">
-				<div class="col-12 text-center align-self-center py-5">
-					<div class="section pb-5 pt-5 pt-sm-2 text-center">
-						<h6 class="mb-0 pb-3"><span>Log In </span><span>Sign Up</span></h6>
-			          	<input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
-			          	<label for="reg-log"></label>
-						<div class="card-3d-wrap mx-auto">
-							<div class="card-3d-wrapper">
-								<div class="card-front">
-									<div class="center-wrap">
-										<div class="section text-center">
-											<h4 class="mb-4 pb-3">Log In</h4>
-											<div class="form-group">
-												<input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="off">
-												<i class="input-icon uil uil-at"></i>
-											</div>	
-											<div class="form-group mt-2">
-												<input type="password" name="logpass" class="form-style" placeholder="Your Password" id="logpass" autocomplete="off">
-												<i class="input-icon uil uil-lock-alt"></i>
-											</div>
-											<a href="dashboard.html" class="btn mt-4">submit</a>
-                            				<p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot your password?</a></p>
-				      					</div>
-			      					</div>
-			      				</div>
-								<div class="card-back">
-									<div class="center-wrap">
-										<div class="section text-center">
-											<h4 class="mb-4 pb-3">Sign Up</h4>
-											<div class="form-group">
-												<input type="text" name="logname" class="form-style" placeholder="Your Full Name" id="logname" autocomplete="off">
-												<i class="input-icon uil uil-user"></i>
-											</div>	
-											<div class="form-group mt-2">
-												<input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="off">
-												<i class="input-icon uil uil-at"></i>
-											</div>	
-											<div class="form-group mt-2">
-												<input type="password" name="logpass" class="form-style" placeholder="Your Password" id="logpass" autocomplete="off">
-												<i class="input-icon uil uil-lock-alt"></i>
-											</div>
-											<a href="dashboard.html" class="btn mt-4">submit</a>
-				      					</div>
-			      					</div>
-			      				</div>
-			      			</div>
-			      		</div>
-			      	</div>
-		      	</div>
-	      	</div>
-	    </div>
-	</div>
-  </body>
+<head>
+  <title>Login</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />
+</head>
+<body>
+  <div class="section">
+    <div class="container">
+      <div class="row full-height justify-content-center">
+        <div class="col-12 text-center align-self-center py-5">
+          <div class="section pb-5 pt-5 pt-sm-2 text-center">
+            <h6 class="mb-0 pb-3"><span>Log In</span><span>Sign Up</span></h6>
+            <input class="checkbox" type="checkbox" id="reg-log" name="reg-log" />
+            <label for="reg-log"></label>
+            <div class="card-3d-wrap mx-auto">
+              <div class="card-3d-wrapper">
+
+                <!-- Login Card -->
+                <div class="card-front">
+                  <div class="center-wrap">
+                    <div class="section text-center">
+                      <h4 class="mb-4 pb-3">Log In</h4>
+                      <form id="loginForm" onsubmit="return loginUser(event)">
+                        <div class="form-group">
+                          <input type="email" name="logemail" class="form-style login-field" placeholder="Your Email" id="logemail" autocomplete="off" required />
+                          <i class="input-icon uil uil-at"></i>
+                        </div>
+
+                        <div class="form-group mt-2">
+                          <input type="password" name="logpass" class="form-style login-field" placeholder="Your Password" id="logpass" autocomplete="off" required />
+                            <i
+    class="uil uil-eye password-toggle"
+    onclick="togglePassword('logpass', this)"
+    style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #002e6b;"
+  ></i>
+                        </div>
+
+                        <button type="submit" class="btn mt-4">Login</button>
+
+                        <p class="mb-0 mt-4 text-center">
+                          <a href="#0" class="link">Forgot your password?</a>
+                        </p>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Signup Card -->
+                <div class="card-back">
+                  <div class="center-wrap">
+                    <form id="signupForm" class="section text-center">
+                      <!-- Step 1 -->
+                      <div class="signup-step" id="step-1">
+  <h4 class="mb-4 pb-3">Sign Up</h4>
+
+  <div class="form-group mb-3">
+    <input type="text" name="name" class="form-style signup-field" placeholder="Full Name" required />
+    <i class="input-icon uil uil-user"></i>
+  </div>
+
+  <div class="form-group mb-3">
+    <input type="text" name="phone" class="form-style signup-field" placeholder="Phone Number" required />
+    <i class="input-icon uil uil-phone"></i>
+  </div>
+
+  <div class="form-group mb-3">
+    <input type="email" name="email" class="form-style signup-field" placeholder="Email Address" required />
+    <i class="input-icon uil uil-at"></i>
+  </div>
+
+  <button type="button" class="btn mt-4" onclick="nextStep(1)">Next</button>
+</div>
+
+<!-- Step 2 -->
+                      <div class="signup-step d-none" id="step-2">
+                        <h4 class="mb-1 pb-1">Business Info</h4>
+
+                        <div class="form-group">
+                          <input type="text" name="business_name" class="form-style signup-field" placeholder="Business Name" required />
+                          <i class="input-icon uil uil-building"></i>
+                        </div>
+
+                        <div class="form-group mt-2">
+                          <input type="text" name="business_address" class="form-style signup-field" placeholder="Business Address" required />
+                          <i class="input-icon uil uil-location-point"></i>
+                        </div>
+
+                        <div class="form-group mt-2">
+                          <input type="text" name="city" class="form-style signup-field" placeholder="City" required />
+                          <i class="input-icon uil uil-location-arrow"></i>
+                        </div>
+
+                        <div class="form-group mt-2">
+                          <input type="text" name="state" class="form-style signup-field" placeholder="State" required />
+                          <i class="input-icon uil uil-map"></i>
+                        </div>
+
+                        <div class="form-group mt-2">
+                          <input type="text" name="business_type" class="form-style signup-field" placeholder="Type of Business" required />
+                          <i class="input-icon uil uil-briefcase-alt"></i>
+                        </div>
+
+                        <button type="button" class="btn mt-4" onclick="nextStep(2)">Next</button>
+                      </div>
+        
+                    
+ <!-- Step 3 -->
+<div class="signup-step d-none" id="step-3">
+  <h4 class="mb-4 pb-3">Set Your Password</h4>
+
+  <div class="form-group position-relative">
+    <input type="password" id="password" name="password" class="form-style signup-field" placeholder="Password" required />
+    <i class="input-icon uil uil-lock-alt"></i>
+    <i class="uil uil-eye toggle-password" onclick="togglePassword('password', this)" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); cursor:pointer;"></i>
+  </div>
+
+  <div class="form-group mt-2 position-relative">
+    <input type="password" id="confirm_password" name="confirm_password" class="form-style signup-field" placeholder="Confirm Password" required />
+    <i class="input-icon uil uil-lock-alt"></i>
+    <i class="uil uil-eye toggle-password" onclick="togglePassword('confirm_password', this)" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); cursor:pointer;"></i>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-12">
+      <button type="button" class="btn btn-success w-100" onclick="submitSignup()">Submit</button>
+    </div>
+  </div>
+</div>
+
+
+                      <!-- Step 4: Success -->
+                      <div class="signup-step d-none" id="step-4">
+                        <h4 class="mb-4 pb-3 text-success">🎉 Registration Successful</h4>
+                        <p>You can now log in with your details.</p>
+                        <a href="#" onclick="goToLogin()" class="btn mt-4">Go to Login</a>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+              </div> <!-- End Wrapper -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript for Toggle Behavior -->
+  <script>
+  const toggle = document.getElementById('reg-log');
+
+  function updateFormValidation() {
+    const loginFields = document.querySelectorAll('.login-field');
+    const signupFields = document.querySelectorAll('.signup-field');
+    const isSignup = toggle.checked;
+
+    loginFields.forEach(input => {
+      input.disabled = isSignup;
+      if (isSignup) input.removeAttribute("required");
+      else input.setAttribute("required", true);
+    });
+
+    signupFields.forEach(input => {
+      input.disabled = !isSignup;
+      if (!isSignup) input.removeAttribute("required");
+      else input.setAttribute("required", true);
+    });
+  }
+
+  function adjustCardHeight(step) {
+    const card = document.querySelector('.card-3d-wrap');
+    if (step === 2) {
+      card.style.height = '580px';
+    } else if (step === 4) {
+      card.style.height = '450px';
+    } else {
+      card.style.height = '400px';
+    }
+
+	function prevStep(current) {
+  document.getElementById(`step-${current}`).classList.add("d-none");
+  document.getElementById(`step-${current - 1}`).classList.remove("d-none");
+
+  // Enable inputs in the previous step (if needed)
+  document.querySelectorAll(`#step-${current - 1} input`).forEach(input => {
+    input.disabled = false;
+  });
+
+  adjustCardHeight(current - 1);
+}
+
+  }
+
+  function nextStep(current) {
+    document.getElementById(`step-${current}`).classList.add("d-none");
+    document.getElementById(`step-${current + 1}`).classList.remove("d-none");
+
+    // Re-enable fields in next step (in case they were disabled initially)
+    document.querySelectorAll(`#step-${current + 1} input`).forEach(input => {
+      input.disabled = false;
+    });
+
+    adjustCardHeight(current + 1);
+  }
+
+  function goToLogin() {
+    document.getElementById("reg-log").checked = false;
+    document.querySelectorAll(".signup-step").forEach(step => step.classList.add("d-none"));
+    document.getElementById("step-1").classList.remove("d-none");
+    adjustCardHeight(1);
+    updateFormValidation();
+  }
+
+  function loginUser(event) {
+    event.preventDefault();
+
+    const email = document.getElementById('logemail').value.trim();
+    const pass = document.getElementById('logpass').value.trim();
+
+    if (!email || !pass) {
+      alert("Please fill out all login fields.");
+      return false;
+    }
+
+    if (email === "demo@example.com" && pass === "password") {
+      alert("Login successful!");
+      // window.location.href = "dashboard.html";
+    } else {
+      alert("Invalid login credentials.");
+    }
+  }
+
+  function submitSignup() {
+    const form = document.getElementById("signupForm");
+    const password = form.querySelector('input[name="password"]').value.trim();
+    const confirm = form.querySelector('input[name="confirm_password"]').value.trim();
+
+    if (!password || !confirm) {
+      alert("Please fill both password fields.");
+      return;
+    }
+
+    if (password !== confirm) {
+      alert("Passwords do not match.");
+      return;
+    }
+
+    document.getElementById("step-3").classList.add("d-none");
+    document.getElementById("step-4").classList.remove("d-none");
+    adjustCardHeight(4);
+  }
+
+  // Init on load
+  window.onload = () => {
+    updateFormValidation();
+    adjustCardHeight(1);
+  };
+
+  toggle.addEventListener('change', () => {
+    updateFormValidation();
+    adjustCardHeight(1);
+  });
+</script>
+
+<script>
+  function togglePassword(fieldId, icon) {
+    const input = document.getElementById(fieldId);
+    const isPassword = input.type === "password";
+    input.type = isPassword ? "text" : "password";
+    icon.classList.toggle("uil-eye-slash", isPassword);
+    icon.classList.toggle("uil-eye", !isPassword);
+  }
+</script>
+
+
+
+</body>
 </html>
