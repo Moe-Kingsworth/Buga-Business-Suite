@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
   <link rel="stylesheet" href="login.css" />
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />
+  <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
 </head>
 <body>
   <div class="section">
@@ -151,95 +155,56 @@
     </div>
   </div>
 
-  <!-- JavaScript for Toggle Behavior -->
-  <script>
-  const toggle = document.getElementById('reg-log');
+  
+<script>
+  // Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyCaMg5hNwMS3-qvAiQupRlc069n3Q9Zy_U",
+    authDomain: "buga-business-suites.firebaseapp.com",
+    projectId: "buga-business-suites",
+    storageBucket: "buga-business-suites.appspot.com",
+    messagingSenderId: "427083951264",
+    appId: "1:427083951264:web:855f90d29449a5748dadc5",
+    measurementId: "G-CRD9BMGJ8P"
+  };
 
-  function updateFormValidation() {
-    const loginFields = document.querySelectorAll('.login-field');
-    const signupFields = document.querySelectorAll('.signup-field');
-    const isSignup = toggle.checked;
+  // Initialize Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
 
-    loginFields.forEach(input => {
-      input.disabled = isSignup;
-      if (isSignup) input.removeAttribute("required");
-      else input.setAttribute("required", true);
-    });
-
-    signupFields.forEach(input => {
-      input.disabled = !isSignup;
-      if (!isSignup) input.removeAttribute("required");
-      else input.setAttribute("required", true);
-    });
-  }
-
-  function adjustCardHeight(step) {
-    const card = document.querySelector('.card-3d-wrap');
-    if (step === 2) {
-      card.style.height = '580px';
-    } else if (step === 4) {
-      card.style.height = '450px';
-    } else {
-      card.style.height = '400px';
-    }
-
-	function prevStep(current) {
-  document.getElementById(`step-${current}`).classList.add("d-none");
-  document.getElementById(`step-${current - 1}`).classList.remove("d-none");
-
-  // Enable inputs in the previous step (if needed)
-  document.querySelectorAll(`#step-${current - 1} input`).forEach(input => {
-    input.disabled = false;
-  });
-
-  adjustCardHeight(current - 1);
-}
-
-  }
-
-  function nextStep(current) {
-    document.getElementById(`step-${current}`).classList.add("d-none");
-    document.getElementById(`step-${current + 1}`).classList.remove("d-none");
-
-    // Re-enable fields in next step (in case they were disabled initially)
-    document.querySelectorAll(`#step-${current + 1} input`).forEach(input => {
-      input.disabled = false;
-    });
-
-    adjustCardHeight(current + 1);
-  }
-
-  function goToLogin() {
-    document.getElementById("reg-log").checked = false;
-    document.querySelectorAll(".signup-step").forEach(step => step.classList.add("d-none"));
-    document.getElementById("step-1").classList.remove("d-none");
-    adjustCardHeight(1);
-    updateFormValidation();
-  }
-
+  // Login function
   function loginUser(event) {
     event.preventDefault();
-
     const email = document.getElementById('logemail').value.trim();
     const pass = document.getElementById('logpass').value.trim();
 
-    if (!email || !pass) {
-      alert("Please fill out all login fields.");
-      return false;
-    }
-
-    if (email === "demo@example.com" && pass === "password") {
-      alert("Login successful!");
-      // window.location.href = "dashboard.html";
-    } else {
-      alert("Invalid login credentials.");
-    }
+    auth.signInWithEmailAndPassword(email, pass)
+      .then(userCredential => {
+        alert("Login successful!");
+        // Redirect to dashboard
+        // window.location.href = "dashboard.html";
+      })
+      .catch(error => {
+        alert("Login failed: " + error.message);
+      });
   }
 
+  // Signup function with Firestore save
   function submitSignup() {
     const form = document.getElementById("signupForm");
+
+    const name = form.querySelector('input[name="name"]').value.trim();
+    const phone = form.querySelector('input[name="phone"]').value.trim();
+    const email = form.querySelector('input[name="email"]').value.trim();
     const password = form.querySelector('input[name="password"]').value.trim();
     const confirm = form.querySelector('input[name="confirm_password"]').value.trim();
+
+    const business_name = form.querySelector('input[name="business_name"]').value.trim();
+    const business_address = form.querySelector('input[name="business_address"]').value.trim();
+    const city = form.querySelector('input[name="city"]').value.trim();
+    const state = form.querySelector('input[name="state"]').value.trim();
+    const business_type = form.querySelector('input[name="business_type"]').value.trim();
 
     if (!password || !confirm) {
       alert("Please fill both password fields.");
@@ -251,21 +216,32 @@
       return;
     }
 
-    document.getElementById("step-3").classList.add("d-none");
-    document.getElementById("step-4").classList.remove("d-none");
-    adjustCardHeight(4);
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        const userId = userCredential.user.uid;
+
+        // Store user profile in Firestore
+        return db.collection("users").doc(userId).set({
+          name,
+          phone,
+          email,
+          business_name,
+          business_address,
+          city,
+          state,
+          business_type,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+      })
+      .then(() => {
+        document.getElementById("step-3").classList.add("d-none");
+        document.getElementById("step-4").classList.remove("d-none");
+        adjustCardHeight(4);
+      })
+      .catch(error => {
+        alert("Signup failed: " + error.message);
+      });
   }
-
-  // Init on load
-  window.onload = () => {
-    updateFormValidation();
-    adjustCardHeight(1);
-  };
-
-  toggle.addEventListener('change', () => {
-    updateFormValidation();
-    adjustCardHeight(1);
-  });
 </script>
 
 <script>
@@ -277,6 +253,8 @@
     icon.classList.toggle("uil-eye", !isPassword);
   }
 </script>
+
+
 
 
 
