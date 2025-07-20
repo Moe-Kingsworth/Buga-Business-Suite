@@ -8,7 +8,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyCaMg5hNwMS3-qvAiQupRlc069n3Q9Zy_U",
   authDomain: "buga-business-suites.firebaseapp.com",
   projectId: "buga-business-suites",
-  storageBucket: "buga-business-suites.firebasestorage.app",
+  storageBucket: "buga-business-suites.appspot.com",
   messagingSenderId: "427083951264",
   appId: "1:427083951264:web:855f90d29449a5748dadc5",
   measurementId: "G-CRD9BMGJ8P"
