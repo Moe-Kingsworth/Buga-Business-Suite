@@ -13,21 +13,26 @@ body {
   justify-content: center;
   height: 100vh;
   padding: 15px;
-  background: #002e6b; /* Buga Primary */
+  background: #002e6b;
   overflow: hidden;
 }
 
 .wrapper {
   max-width: 500px;
   width: 100%;
+  height: 100%;
   background: #fff;
   border-radius: 5px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .wrapper .title {
+  flex-shrink: 0;
   height: 120px;
-  background: #01ffff; /* Buga Secondary */
+  background: #01ffff;
   border-radius: 5px 5px 0 0;
   color: #002e6b;
   font-size: 30px;
@@ -37,17 +42,22 @@ body {
   justify-content: center;
 }
 
-.wrapper form {
+.form-container {
+  flex-grow: 1;
+  overflow-y: auto;
   padding: 25px 35px;
 }
 
-.wrapper form .row {
+/* Form styles (same as login.css) */
+
+.row {
   height: 60px;
   margin-top: 15px;
   position: relative;
 }
 
-.wrapper form .row input {
+.row input,
+.row select {
   height: 100%;
   width: 100%;
   outline: none;
@@ -58,15 +68,16 @@ body {
   transition: all 0.3s ease;
 }
 
-form .row input:focus {
+.row input:focus,
+.row select:focus {
   border-color: #01ffff;
 }
 
-form .row input::placeholder {
+.row input::placeholder {
   color: #999;
 }
 
-.wrapper form .row i {
+.row i {
   position: absolute;
   width: 55px;
   height: 100%;
@@ -79,7 +90,6 @@ form .row input::placeholder {
   justify-content: center;
 }
 
-/* Toggle password icon */
 .toggle-password {
   position: absolute;
   top: 50%;
@@ -89,21 +99,17 @@ form .row input::placeholder {
   color: #999;
 }
 
-.wrapper form .pass {
-  margin-top: 12px;
-}
-
-.wrapper form .pass a {
+.pass a {
   color: #002e6b;
   font-size: 17px;
   text-decoration: none;
 }
 
-.wrapper form .pass a:hover {
+.pass a:hover {
   text-decoration: underline;
 }
 
-.wrapper form .button input {
+.button input {
   margin-top: 20px;
   color: #002e6b;
   font-size: 20px;
@@ -114,21 +120,21 @@ form .row input::placeholder {
   cursor: pointer;
 }
 
-form .button input:hover {
+.button input:hover {
   background: #00cfd1;
 }
 
-.wrapper form .signup-link {
+.signup-link {
   text-align: center;
-  margin-top: 45px;
+  margin-top: 30px;
   font-size: 17px;
 }
 
-.wrapper form .signup-link a {
+.signup-link a {
   color: #01ffff;
   text-decoration: none;
 }
 
-form .signup-link a:hover {
+.signup-link a:hover {
   text-decoration: underline;
 }

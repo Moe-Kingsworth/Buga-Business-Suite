@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buga | Register</title>
+  <link rel="stylesheet" href="register.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="title"><span>Create Your Buga Account</span></div>
+    <div class="form-container">
+      <form id="signupForm">
+        <div class="row"><i class="fas fa-user"></i><input type="text" id="fullName" placeholder="Full Name" required/></div>
+        <div class="row"><i class="fas fa-envelope"></i><input type="email" id="email" placeholder="Email" required/></div>
+        <div class="row"><i class="fas fa-phone"></i><input type="tel" id="phone" placeholder="Phone Number" required/></div>
+        <div class="row"><i class="fas fa-briefcase"></i><input type="text" id="businessName" placeholder="Business Name" required/></div>
+
+        <div class="row">
+          <i class="fas fa-industry"></i>
+          <select id="businessType" required>
+            <option value="">Type of Business</option>
+            <option value="Retail">Retail</option>
+            <option value="Wholesale">Wholesale</option>
+            <option value="Services">Services</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <i class="fas fa-tags"></i>
+          <select id="businessCategory" required>
+            <option value="">Business Category</option>
+            <option value="Cosmetic">Cosmetic</option>
+            <option value="Provision Store">Provision Store</option>
+            <option value="Supermarket">Supermarket</option>
+            <option value="Pharmacy">Pharmacy</option>
+            <option value="Restaurant">Restaurant</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Bakery">Bakery</option>
+            <option value="Stationery">Stationery</option>
+          </select>
+        </div>
+
+        <div class="row"><i class="fas fa-location-dot"></i><input type="text" id="businessAddress" placeholder="Business Address" required/></div>
+        <div class="row"><i class="fas fa-city"></i><input type="text" id="city" placeholder="City" required/></div>
+        <div class="row"><i class="fas fa-map"></i><input type="text" id="state" placeholder="State" required/></div>
+
+        <div class="row">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password" placeholder="Password" required/>
+          <i class="fas fa-eye toggle-password" data-target="password"></i>
+        </div>
+
+        <div class="row">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="confirmPassword" placeholder="Confirm Password" required/>
+          <i class="fas fa-eye toggle-password" data-target="confirmPassword"></i>
+        </div>
+
+        <div class="row button">
+          <input type="submit" value="Create Account"/>
+        </div>
+        <div class="signup-link">Already have an account? <a href="login.html">Login</a></div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="register.js"></script>
+</body>
+</html>
