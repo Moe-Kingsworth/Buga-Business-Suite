@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "buga-business-suites"
-  }
+  },
+  "targets": {
+    "buga-business-suites": {
+      "hosting": {
+        "default": [
+          "buga-business-suites"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
