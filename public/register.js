@@ -1,12 +1,9 @@
-// Import Firebase modules
+// Firebase SDK imports
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// Import EmailJS
-import emailjs from "https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js";
-
-// Initialize Firebase
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyCaMg5hNwMS3-qvAiQupRlc069n3Q9Zy_U",
   authDomain: "buga-business-suites.firebaseapp.com",
@@ -17,55 +14,42 @@ const firebaseConfig = {
   measurementId: "G-CRD9BMGJ8P"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Initialize EmailJS with your Public Key
+// ✅ Initialize EmailJS correctly (NO import, just global init)
 emailjs.init("9gPg8Xl984_ESnJe7");
 
-// Send welcome email function
+// 🔔 SweetAlert2 success popup
+function showSuccessPopup() {
+  Swal.fire({
+    title: '🎉 Account Created!',
+    text: 'Welcome to the Buga Family!',
+    icon: 'success',
+    confirmButtonColor: '#002e6b',
+    confirmButtonText: 'Continue',
+    timer: 3000,
+    timerProgressBar: true,
+    showConfirmButton: false
+  });
+}
+
+// ✉️ Send welcome email
 async function sendWelcomeEmail(fullName, email) {
   try {
     const result = await emailjs.send("buga_contact_service", "buga_welcome_email", {
-      fullName: fullName,
-      email: email,
+      fullName,
+      email
     });
     console.log("✅ Welcome email sent!", result.status);
   } catch (error) {
-    console.error("❌ Failed to send welcome email:", error);
+    console.error("❌ Email sending failed:", error);
   }
 }
 
-// Show success popup toast
-function showSuccessToast(message) {
-  const toast = document.createElement("div");
-  toast.textContent = message;
-  toast.style.position = "fixed";
-  toast.style.top = "30px";
-  toast.style.left = "50%";
-  toast.style.transform = "translateX(-50%)";
-  toast.style.backgroundColor = "#4BB543";
-  toast.style.color = "#fff";
-  toast.style.padding = "12px 24px";
-  toast.style.borderRadius = "8px";
-  toast.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
-  toast.style.zIndex = "9999";
-  toast.style.fontSize = "16px";
-  toast.style.fontWeight = "bold";
-  toast.style.transition = "opacity 0.5s ease";
-
-  document.body.appendChild(toast);
-
-  setTimeout(() => {
-    toast.style.opacity = "0";
-    setTimeout(() => {
-      document.body.removeChild(toast);
-    }, 500);
-  }, 3000);
-}
-
-// Form submission handler
+// 🧾 Register form handler
 document.getElementById("signupForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -82,16 +66,21 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
   const confirmPassword = document.getElementById("confirmPassword").value;
 
   if (password !== confirmPassword) {
-    alert("❌ Passwords do not match");
+    Swal.fire({
+      title: "Error",
+      text: "❌ Passwords do not match!",
+      icon: "error",
+      confirmButtonColor: "#d33"
+    });
     return;
   }
 
   try {
-    // Create user in Firebase Auth
+    // 🔐 Register with Firebase Auth
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const uid = userCredential.user.uid;
 
-    // Store user data in Firestore
+    // 🗃️ Store user data in Firestore
     await setDoc(doc(db, "users", uid), {
       fullName,
       email,
@@ -102,26 +91,32 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
       businessAddress,
       city,
       state,
-      createdAt: serverTimestamp(),
+      createdAt: serverTimestamp()
     });
 
-    // Send welcome email
+    // 📧 Send welcome email
     await sendWelcomeEmail(fullName, email);
 
-    // Show popup
-    showSuccessToast("🎉 Account Created Successfully!");
+    // ✅ Success popup
+    showSuccessPopup();
 
-    // Redirect after short delay
+    // ⏳ Redirect to dashboard
     setTimeout(() => {
       window.location.href = "dashboard.html";
-    }, 1500);
+    }, 2500);
+
   } catch (error) {
-    console.error(error);
-    alert("❌ Error: " + error.message);
+    console.error("🔥 Firebase Error:", error);
+    Swal.fire({
+      title: "Registration Failed",
+      text: error.message,
+      icon: "error",
+      confirmButtonColor: "#d33"
+    });
   }
 });
 
-// Toggle password visibility
+// 👁️ Toggle password visibility
 document.querySelectorAll(".toggle-password").forEach((icon) => {
   icon.addEventListener("click", () => {
     const targetId = icon.getAttribute("data-target");
