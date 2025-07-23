@@ -1,9 +1,12 @@
 // Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// Firebase config
+// Import EmailJS
+import emailjs from "https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js";
+
+// Initialize Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyCaMg5hNwMS3-qvAiQupRlc069n3Q9Zy_U",
   authDomain: "buga-business-suites.firebaseapp.com",
@@ -14,10 +17,53 @@ const firebaseConfig = {
   measurementId: "G-CRD9BMGJ8P"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+
+// Initialize EmailJS with your Public Key
+emailjs.init("9gPg8Xl984_ESnJe7");
+
+// Send welcome email function
+async function sendWelcomeEmail(fullName, email) {
+  try {
+    const result = await emailjs.send("buga_contact_service", "buga_welcome_email", {
+      fullName: fullName,
+      email: email,
+    });
+    console.log("✅ Welcome email sent!", result.status);
+  } catch (error) {
+    console.error("❌ Failed to send welcome email:", error);
+  }
+}
+
+// Show success popup toast
+function showSuccessToast(message) {
+  const toast = document.createElement("div");
+  toast.textContent = message;
+  toast.style.position = "fixed";
+  toast.style.top = "30px";
+  toast.style.left = "50%";
+  toast.style.transform = "translateX(-50%)";
+  toast.style.backgroundColor = "#4BB543";
+  toast.style.color = "#fff";
+  toast.style.padding = "12px 24px";
+  toast.style.borderRadius = "8px";
+  toast.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
+  toast.style.zIndex = "9999";
+  toast.style.fontSize = "16px";
+  toast.style.fontWeight = "bold";
+  toast.style.transition = "opacity 0.5s ease";
+
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    setTimeout(() => {
+      document.body.removeChild(toast);
+    }, 500);
+  }, 3000);
+}
 
 // Form submission handler
 document.getElementById("signupForm").addEventListener("submit", async (e) => {
@@ -56,11 +102,19 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
       businessAddress,
       city,
       state,
-      createdAt: new Date().toISOString(),
+      createdAt: serverTimestamp(),
     });
 
-    alert("✅ Account created successfully!");
-    window.location.href = "dashboard.html";
+    // Send welcome email
+    await sendWelcomeEmail(fullName, email);
+
+    // Show popup
+    showSuccessToast("🎉 Account Created Successfully!");
+
+    // Redirect after short delay
+    setTimeout(() => {
+      window.location.href = "dashboard.html";
+    }, 1500);
   } catch (error) {
     console.error(error);
     alert("❌ Error: " + error.message);
