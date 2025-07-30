@@ -13,122 +13,180 @@ body {
   justify-content: center;
   height: 100vh;
   padding: 15px;
-  background: #002e6b; /* Buga Primary */
+  background: #002e6b;
   overflow: hidden;
+  position: relative;
+  color: white;
+}
+
+/* Particles background */
+#particles-js {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
 .wrapper {
-  max-width: 500px;
+  max-width: 450px;
   width: 100%;
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  background: transparent;
+  border-radius: 10px;
 }
 
 .wrapper .title {
-  height: 120px;
-  background: #01ffff; /* Buga Secondary */
-  border-radius: 5px 5px 0 0;
-  color: #002e6b;
-  font-size: 30px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #01ffff;
 }
 
-.wrapper form {
-  padding: 25px 35px;
-}
-
-.wrapper form .row {
-  height: 60px;
-  margin-top: 15px;
+form .input-line {
   position: relative;
+  margin-bottom: 25px;
 }
 
-.wrapper form .row input {
-  height: 100%;
+.input-line input {
   width: 100%;
+  padding: 10px 0;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #01ffff;
+  color: white;
+  font-size: 16px;
   outline: none;
-  padding-left: 70px;
-  border-radius: 5px;
-  border: 1px solid lightgrey;
-  font-size: 18px;
-  transition: all 0.3s ease;
 }
 
-form .row input:focus {
-  border-color: #01ffff;
+.input-line input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
-form .row input::placeholder {
-  color: #999;
-}
-
-.wrapper form .row i {
-  position: absolute;
-  width: 55px;
-  height: 100%;
-  color: #fff;
-  font-size: 22px;
-  background: #01ffff;
-  border-radius: 5px 0 0 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Toggle password icon */
 .toggle-password {
   position: absolute;
+  right: 0;
   top: 50%;
-  right: 15px;
   transform: translateY(-50%);
-  cursor: pointer;
   color: #999;
+  cursor: pointer;
 }
 
-.wrapper form .pass {
-  margin-top: 12px;
+/* Remember Me */
+.remember-me {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
 
-.wrapper form .pass a {
-  color: #002e6b;
-  font-size: 17px;
+.pass {
+  margin-bottom: 20px;
+}
+
+.pass a {
+  color: #01ffff;
   text-decoration: none;
+  font-size: 15px;
 }
 
-.wrapper form .pass a:hover {
+.pass a:hover {
   text-decoration: underline;
 }
 
-.wrapper form .button input {
-  margin-top: 20px;
+/* Button */
+.button input {
+  background-color: #01ffff;
   color: #002e6b;
-  font-size: 20px;
-  font-weight: 500;
-  padding-left: 0px;
-  background: #01ffff;
-  border: 1px solid #01ffff;
+  padding: 12px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 999px;
+  transition: 0.3s;
   cursor: pointer;
 }
 
-form .button input:hover {
-  background: #00cfd1;
+.button input:hover {
+  background-color: #00dede;
+  box-shadow: 0 0 10px #01ffff;
 }
 
-.wrapper form .signup-link {
+/* Signup */
+.signup-link {
   text-align: center;
-  margin-top: 45px;
-  font-size: 17px;
+  margin-top: 25px;
+  font-size: 15px;
 }
 
-.wrapper form .signup-link a {
+.signup-link a {
   color: #01ffff;
   text-decoration: none;
 }
 
-form .signup-link a:hover {
+.signup-link a:hover {
   text-decoration: underline;
+}
+
+/* Social */
+.social-login {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.social-login p {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #bbb;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-icons .icon-link {
+  font-size: 20px;
+  color: #01ffff;
+  transition: 0.3s ease;
+}
+
+.social-icons .icon-link:hover {
+  color: #00cfd1;
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 20px 15px;
+  }
+
+  .wrapper .title {
+    font-size: 26px;
+  }
+
+  .input-line input {
+    font-size: 14px;
+  }
+
+  .button input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .signup-link,
+  .pass a,
+  .social-login p {
+    font-size: 13px;
+  }
+
+  .social-icons .icon-link {
+    font-size: 18px;
+  }
 }

@@ -1,7 +1,16 @@
-// Firebase SDK imports
+// Firebase SDK imports 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  sendEmailVerification
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 // Firebase config
 const firebaseConfig = {
@@ -19,40 +28,44 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// ✅ Initialize EmailJS correctly (NO import, just global init)
+// Init EmailJS
 emailjs.init("9gPg8Xl984_ESnJe7");
 
-// 🔔 SweetAlert2 success popup
+// SweetAlert success popup
 function showSuccessPopup() {
   Swal.fire({
     title: '🎉 Account Created!',
-    text: 'Welcome to the Buga Family!',
+    html: `<p>Welcome to the Buga Family!</p>
+           <p><strong>Check your email to activate your account.</strong></p>`,
     icon: 'success',
     confirmButtonColor: '#002e6b',
-    confirmButtonText: 'Continue',
-    timer: 3000,
+    timer: 5000,
     timerProgressBar: true,
     showConfirmButton: false
   });
 }
 
-// ✉️ Send welcome email
+// Send welcome email
 async function sendWelcomeEmail(fullName, email) {
   try {
-    const result = await emailjs.send("buga_contact_service", "buga_welcome_email", {
+    await emailjs.send("buga_contact_service", "buga_welcome_email", {
       fullName,
       email
     });
-    console.log("✅ Welcome email sent!", result.status);
   } catch (error) {
-    console.error("❌ Email sending failed:", error);
+    console.error("❌ EmailJS error:", error);
   }
 }
 
-// 🧾 Register form handler
+// Main form submit handler
 document.getElementById("signupForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  const submitBtn = document.querySelector("button[type='submit']");
+  submitBtn.disabled = true;
+  submitBtn.innerText = "Registering...";
+
+  // Collect form values
   const fullName = document.getElementById("fullName").value.trim();
   const email = document.getElementById("email").value.trim();
   const phone = document.getElementById("phone").value.trim();
@@ -65,23 +78,28 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
   const password = document.getElementById("password").value;
   const confirmPassword = document.getElementById("confirmPassword").value;
 
+  // Validate password match before any Firebase call
   if (password !== confirmPassword) {
     Swal.fire({
-      title: "Error",
-      text: "❌ Passwords do not match!",
-      icon: "error",
-      confirmButtonColor: "#d33"
+      icon: 'error',
+      title: 'Passwords do not match!',
+      confirmButtonColor: '#d33'
     });
+    submitBtn.disabled = false;
+    submitBtn.innerText = "Create Account";
     return;
   }
 
   try {
-    // 🔐 Register with Firebase Auth
+    // Create user with Firebase
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const uid = userCredential.user.uid;
+    const user = userCredential.user;
 
-    // 🗃️ Store user data in Firestore
-    await setDoc(doc(db, "users", uid), {
+    // Send email verification
+    await sendEmailVerification(user);
+
+    // Save additional user info in Firestore
+    await setDoc(doc(db, "users", user.uid), {
       fullName,
       email,
       phone,
@@ -94,35 +112,58 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
       createdAt: serverTimestamp()
     });
 
-    // 📧 Send welcome email
+    // Send welcome email
     await sendWelcomeEmail(fullName, email);
 
-    // ✅ Success popup
+    // Show success message
     showSuccessPopup();
 
-    // ⏳ Redirect to dashboard
+    // Reset form for UX
+    document.getElementById("signupForm").reset();
+
+    // Redirect to login
     setTimeout(() => {
-      window.location.href = "dashboard.html";
-    }, 2500);
+      window.location.href = "login.html";
+    }, 5000);
 
   } catch (error) {
     console.error("🔥 Firebase Error:", error);
+    let message = "An error occurred. Please try again.";
+
+    switch (error.code) {
+      case "auth/email-already-in-use":
+        message = "This email is already registered. Try logging in.";
+        break;
+      case "auth/invalid-email":
+        message = "Please enter a valid email address.";
+        break;
+      case "auth/weak-password":
+        message = "Password should be at least 6 characters.";
+        break;
+      default:
+        message = error.message;
+    }
+
     Swal.fire({
-      title: "Registration Failed",
-      text: error.message,
-      icon: "error",
-      confirmButtonColor: "#d33"
+      icon: 'error',
+      title: 'Registration Failed',
+      text: message,
+      confirmButtonColor: '#d33'
     });
   }
+
+  submitBtn.disabled = false;
+  submitBtn.innerText = "Create Account";
 });
 
-// 👁️ Toggle password visibility
+// Toggle password visibility
 document.querySelectorAll(".toggle-password").forEach((icon) => {
+  icon.setAttribute("tabindex", "0"); // Accessibility
   icon.addEventListener("click", () => {
     const targetId = icon.getAttribute("data-target");
     const input = document.getElementById(targetId);
-    const isPassword = input.getAttribute("type") === "password";
-    input.setAttribute("type", isPassword ? "text" : "password");
+    const isHidden = input.getAttribute("type") === "password";
+    input.setAttribute("type", isHidden ? "text" : "password");
     icon.classList.toggle("fa-eye");
     icon.classList.toggle("fa-eye-slash");
   });

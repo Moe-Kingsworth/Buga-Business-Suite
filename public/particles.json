@@ -1,0 +1,19 @@
+{
+  "particles": {
+    "number": { "value": 60 },
+    "color": { "value": "#01ffff" },
+    "shape": { "type": "circle" },
+    "opacity": {
+      "value": 0.4,
+      "random": true
+    },
+    "size": {
+      "value": 3,
+      "random": true
+    },
+    "move": {
+      "enable": true,
+      "speed": 1
+    }
+  }
+}

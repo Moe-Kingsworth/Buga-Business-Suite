@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Email Verification</title>
+
+  <!-- Fonts and Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700,800&display=swap" rel="stylesheet">
+
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+
+  <!-- Particles.js -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="verifyemail.css" />
+</head>
+
+<body>
+  <div id="particles-js"></div>
+
+  <div class="verification-container">
+    <div class="card">
+      <i class="fas fa-envelope-circle-check icon"></i>
+      <h2>Verify Your Email</h2>
+      <p>We've sent a verification link to your email address.<br>Please check your inbox to activate your account.</p>
+      
+      <div class="button-row">
+        <button id="resendBtn" class="btn">Resend Verification Email</button>
+        <button onclick="window.location.href='login.html'" class="btn">Go to Login</button>
+      </div>
+
+      <div class="countdown" id="cooldownText"></div>
+    </div>
+  </div>
+
+  <!-- External Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module" src="verifyemail.js"></script>
+  <script src="particles-config.js"></script>
+</body>
+</html>

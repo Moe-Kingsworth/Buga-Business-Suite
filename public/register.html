@@ -1,83 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Buga | Create Account</title>
+  <title>Buga | Register</title>
   <link rel="stylesheet" href="register.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png" />
-
-  <!-- ✅ SweetAlert2 CSS for success popup -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
 <body>
+  <!-- Particles background -->
+  <div id="particles-js"></div>
+
   <div class="wrapper">
     <div class="title"><span>Create Account</span></div>
-    <div class="form-container">
-      <form id="signupForm">
-        <div class="row"><i class="fas fa-user"></i><input type="text" id="fullName" placeholder="Full Name" required/></div>
-        <div class="row"><i class="fas fa-envelope"></i><input type="email" id="email" placeholder="Email" required/></div>
-        <div class="row"><i class="fas fa-phone"></i><input type="tel" id="phone" placeholder="Phone Number" required/></div>
-        <div class="row"><i class="fas fa-briefcase"></i><input type="text" id="businessName" placeholder="Business Name" required/></div>
 
-        <div class="row">
-          <i class="fas fa-industry"></i>
-          <select id="businessType" required>
-            <option value="">Type of Business</option>
-            <option value="Retail">Retail</option>
-            <option value="Wholesale">Wholesale</option>
-            <option value="Services">Services</option>
-          </select>
-        </div>
+    <form id="signupForm">
+  <div class="input-line"><input type="text" id="fullName" placeholder="Full Name" required /></div>
+  <div class="input-line"><input type="email" id="email" placeholder="Email Address" required /></div>
+  <div class="input-line"><input type="tel" id="phone" placeholder="Phone Number" required /></div>
+  <div class="input-line"><input type="text" id="businessName" placeholder="Business Name" required /></div>
 
-        <div class="row">
-          <i class="fas fa-tags"></i>
-          <select id="businessCategory" required>
-            <option value="">Business Category</option>
-            <option value="Cosmetic">Cosmetic</option>
-            <option value="Provision Store">Provision Store</option>
-            <option value="Supermarket">Supermarket</option>
-            <option value="Pharmacy">Pharmacy</option>
-            <option value="Restaurant">Restaurant</option>
-            <option value="Electronics">Electronics</option>
-            <option value="Fashion">Fashion</option>
-            <option value="Bakery">Bakery</option>
-            <option value="Stationery">Stationery</option>
-            <option value="Stationery">Others</option>
-          </select>
-        </div>
-
-        <div class="row"><i class="fas fa-location-dot"></i><input type="text" id="businessAddress" placeholder="Business Address" required/></div>
-        <div class="row"><i class="fas fa-city"></i><input type="text" id="city" placeholder="City" required/></div>
-        <div class="row"><i class="fas fa-map"></i><input type="text" id="state" placeholder="State" required/></div>
-
-        <div class="row">
-          <i class="fas fa-lock"></i>
-          <input type="password" id="password" placeholder="Password" required/>
-          <i class="fas fa-eye toggle-password" data-target="password"></i>
-        </div>
-
-        <div class="row">
-          <i class="fas fa-lock"></i>
-          <input type="password" id="confirmPassword" placeholder="Confirm Password" required/>
-          <i class="fas fa-eye toggle-password" data-target="confirmPassword"></i>
-        </div>
-
-        <div class="row button">
-          <input type="submit" value="Create Account"/>
-        </div>
-        <div class="signup-link">Already have an account? <a href="login.html">Login</a></div>
-      </form>
-    </div>
+  <div class="input-line select-line">
+    <select id="businessType" required>
+      <option value="">Type of Business</option>
+      <option value="Retail">Retail</option>
+      <option value="Wholesale">Wholesale</option>
+      <option value="Services">Services</option>
+    </select>
   </div>
 
-  <!-- SweetAlert2 Script -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <div class="input-line select-line">
+    <select id="businessCategory" required>
+      <option value="">Business Category</option>
+      <option value="Cosmetic">Cosmetic</option>
+      <option value="Provision Store">Provision Store</option>
+      <option value="Supermarket">Supermarket</option>
+      <option value="Pharmacy">Pharmacy</option>
+      <option value="Restaurant">Restaurant</option>
+      <option value="Electronics">Electronics</option>
+      <option value="Fashion">Fashion</option>
+      <option value="Bakery">Bakery</option>
+      <option value="Stationery">Stationery</option>
+      <option value="Others">Others</option>
+    </select>
+  </div>
 
-  <!-- Your Register JS with Firebase + EmailJS logic -->
+  <div class="input-line"><input type="text" id="businessAddress" placeholder="Business Address" required /></div>
+  <div class="input-line"><input type="text" id="city" placeholder="City" required /></div>
+  <div class="input-line"><input type="text" id="state" placeholder="State" required /></div>
+
+  <div class="input-line">
+    <input type="password" placeholder="Password" id="password" required />
+    <span class="toggle-password" onclick="togglePassword('password', this)">
+      <i class="fas fa-eye"></i>
+    </span>
+  </div>
+
+  <div class="input-line">
+    <input type="password" placeholder="Confirm Password" id="confirmPassword" required />
+    <span class="toggle-password" onclick="togglePassword('confirmPassword', this)">
+      <i class="fas fa-eye"></i>
+    </span>
+  </div>
+
+  <div class="button">
+    <input type="submit" value="Create Account" />
+  </div>
+
+  <div class="signup-link">
+    Already have an account? <a href="login.html">Login</a>
+  </div>
+</form>
+
+  </div>
+
   <script type="module" src="register.js"></script>
+
+
+  <script>
+    function togglePassword(id, el) {
+      const input = document.getElementById(id);
+      const icon = el.querySelector('i');
+      const isHidden = input.type === "password";
+      input.type = isHidden ? "text" : "password";
+      icon.classList.toggle("fa-eye");
+      icon.classList.toggle("fa-eye-slash");
+    }
+
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80 },
+        color: { value: "#01ffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.3 },
+        size: { value: 3 },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#01ffff",
+          opacity: 0.2,
+          width: 1
+        },
+        move: { enable: true, speed: 2 }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "grab" },
+          onclick: { enable: true, mode: "push" }
+        },
+        modes: {
+          grab: { distance: 140, line_linked: { opacity: 0.3 } },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
+    });
+  </script>
 </body>
 </html>
