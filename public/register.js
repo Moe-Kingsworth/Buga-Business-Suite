@@ -31,6 +31,68 @@ const db = getFirestore(app);
 // Init EmailJS
 emailjs.init("9gPg8Xl984_ESnJe7");
 
+// Particle.js initialization
+document.addEventListener("DOMContentLoaded", () => {
+  if (typeof particlesJS !== "undefined") {
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80 },
+        color: { value: "#01ffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5 },
+        size: { value: 3 },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#01ffff",
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: "none",
+          out_mode: "out"
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "grab" },
+          onclick: { enable: true, mode: "push" }
+        },
+        modes: {
+          grab: { distance: 140, line_linked: { opacity: 1 } },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
+    });
+  } else {
+    console.warn("particlesJS not loaded.");
+  }
+});
+
+// Password toggle
+function togglePassword(inputId, el) {
+  const input = document.getElementById(inputId);
+  const icon = el.querySelector("i");
+
+  if (input.type === "password") {
+    input.type = "text";
+    icon.classList.remove("fa-eye");
+    icon.classList.add("fa-eye-slash");
+  } else {
+    input.type = "password";
+    icon.classList.remove("fa-eye-slash");
+    icon.classList.add("fa-eye");
+  }
+}
+
+// Expose it globally for inline onclick use
+window.togglePassword = togglePassword;
+
+
 // SweetAlert success popup
 function showSuccessPopup() {
   Swal.fire({
@@ -61,11 +123,10 @@ async function sendWelcomeEmail(fullName, email) {
 document.getElementById("signupForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const submitBtn = document.querySelector("button[type='submit']");
+  const submitBtn = document.querySelector("input[type='submit']");
   submitBtn.disabled = true;
-  submitBtn.innerText = "Registering...";
+  submitBtn.value = "Registering...";
 
-  // Collect form values
   const fullName = document.getElementById("fullName").value.trim();
   const email = document.getElementById("email").value.trim();
   const phone = document.getElementById("phone").value.trim();
@@ -78,7 +139,6 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
   const password = document.getElementById("password").value;
   const confirmPassword = document.getElementById("confirmPassword").value;
 
-  // Validate password match before any Firebase call
   if (password !== confirmPassword) {
     Swal.fire({
       icon: 'error',
@@ -86,19 +146,16 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
       confirmButtonColor: '#d33'
     });
     submitBtn.disabled = false;
-    submitBtn.innerText = "Create Account";
+    submitBtn.value = "Create Account";
     return;
   }
 
   try {
-    // Create user with Firebase
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
 
-    // Send email verification
     await sendEmailVerification(user);
 
-    // Save additional user info in Firestore
     await setDoc(doc(db, "users", user.uid), {
       fullName,
       email,
@@ -112,16 +169,11 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
       createdAt: serverTimestamp()
     });
 
-    // Send welcome email
     await sendWelcomeEmail(fullName, email);
 
-    // Show success message
     showSuccessPopup();
-
-    // Reset form for UX
     document.getElementById("signupForm").reset();
 
-    // Redirect to login
     setTimeout(() => {
       window.location.href = "login.html";
     }, 5000);
@@ -153,18 +205,5 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
   }
 
   submitBtn.disabled = false;
-  submitBtn.innerText = "Create Account";
-});
-
-// Toggle password visibility
-document.querySelectorAll(".toggle-password").forEach((icon) => {
-  icon.setAttribute("tabindex", "0"); // Accessibility
-  icon.addEventListener("click", () => {
-    const targetId = icon.getAttribute("data-target");
-    const input = document.getElementById(targetId);
-    const isHidden = input.getAttribute("type") === "password";
-    input.setAttribute("type", isHidden ? "text" : "password");
-    icon.classList.toggle("fa-eye");
-    icon.classList.toggle("fa-eye-slash");
-  });
+  submitBtn.value = "Create Account";
 });
