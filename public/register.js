@@ -31,67 +31,6 @@ const db = getFirestore(app);
 // Init EmailJS
 emailjs.init("9gPg8Xl984_ESnJe7");
 
-// Particle.js initialization
-document.addEventListener("DOMContentLoaded", () => {
-  if (typeof particlesJS !== "undefined") {
-    particlesJS("particles-js", {
-      particles: {
-        number: { value: 80 },
-        color: { value: "#01ffff" },
-        shape: { type: "circle" },
-        opacity: { value: 0.5 },
-        size: { value: 3 },
-        line_linked: {
-          enable: true,
-          distance: 150,
-          color: "#01ffff",
-          opacity: 0.4,
-          width: 1
-        },
-        move: {
-          enable: true,
-          speed: 2,
-          direction: "none",
-          out_mode: "out"
-        }
-      },
-      interactivity: {
-        detect_on: "canvas",
-        events: {
-          onhover: { enable: true, mode: "grab" },
-          onclick: { enable: true, mode: "push" }
-        },
-        modes: {
-          grab: { distance: 140, line_linked: { opacity: 1 } },
-          push: { particles_nb: 4 }
-        }
-      },
-      retina_detect: true
-    });
-  } else {
-    console.warn("particlesJS not loaded.");
-  }
-});
-
-// Password toggle
-function togglePassword(inputId, el) {
-  const input = document.getElementById(inputId);
-  const icon = el.querySelector("i");
-
-  if (input.type === "password") {
-    input.type = "text";
-    icon.classList.remove("fa-eye");
-    icon.classList.add("fa-eye-slash");
-  } else {
-    input.type = "password";
-    icon.classList.remove("fa-eye-slash");
-    icon.classList.add("fa-eye");
-  }
-}
-
-// Expose it globally for inline onclick use
-window.togglePassword = togglePassword;
-
 
 // SweetAlert success popup
 function showSuccessPopup() {
