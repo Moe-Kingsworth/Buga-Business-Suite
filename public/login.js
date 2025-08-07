@@ -26,26 +26,46 @@ document.getElementById("loginForm").addEventListener("submit", (e) => {
 
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // ✅ Save email if "Remember Me" is checked
-      if (rememberMeChecked) {
-        localStorage.setItem("rememberedEmail", email);
-      } else {
-        localStorage.removeItem("rememberedEmail");
-      }
+      const user = userCredential.user;
 
-      // ✅ SweetAlert2 success pop-up
-      Swal.fire({
-        icon: 'success',
-        title: 'Login Successful!',
-        text: 'Welcome back to Buga!',
-        confirmButtonText: 'Continue',
-        confirmButtonColor: '#002e6b'
-      }).then(() => {
-        window.location.href = "dashboard.html"; // ✅ redirect after popup
-      });
+      // ✅ Check if email has been verified before
+      const verifiedFlagKey = `emailVerified_${user.uid}`;
+      const previouslyVerified = localStorage.getItem(verifiedFlagKey) === "true";
+
+      if (user.emailVerified || previouslyVerified) {
+        // ✅ Save email if "Remember Me" is checked
+        if (rememberMeChecked) {
+          localStorage.setItem("rememberedEmail", email);
+        } else {
+          localStorage.removeItem("rememberedEmail");
+        }
+
+        // ✅ Store verified flag for future logins
+        localStorage.setItem(verifiedFlagKey, "true");
+
+        // ✅ SweetAlert2 success pop-up
+        Swal.fire({
+          icon: 'success',
+          title: 'Login Successful!',
+          text: 'Welcome back to Buga!',
+          confirmButtonText: 'Continue',
+          confirmButtonColor: '#002e6b'
+        }).then(() => {
+          window.location.href = "dashboard.html";
+        });
+
+      } else {
+        // ❌ Email not verified on first login
+        Swal.fire({
+          icon: 'warning',
+          title: 'Email Not Verified',
+          text: 'Please verify your email before logging in.',
+          confirmButtonColor: '#ff9800'
+        });
+      }
     })
     .catch((error) => {
-      // ❌ SweetAlert2 error pop-up
+      // ❌ Login failed
       Swal.fire({
         icon: 'error',
         title: 'Login Failed',
